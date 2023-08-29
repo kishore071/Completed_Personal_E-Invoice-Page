@@ -1,0 +1,344 @@
+{
+      "ItemList": {
+            "Quantity": [100.345,"number",false,"Qty","itemsdata.Qty"],
+            "Free_Quantity":[ 10,"number",false,"FreeQty","itemsdata.FreeQty"],
+            "Unit": ["NOS","text",false,"Unit","itemsdata.Unit"],
+            "UnitPrice":[99.545,"number",true,"UnitPrice","itemsdata.UnitPrice"],
+            "Total_Amount (UnitPrice*Quantity)": [9988.84,"number",true,"TotAmt","itemsdata.TotAmt"],
+            "Discount": [10,"number",false,"Discount","itemsdata.Discount"],
+            "PreTaxVal": [1,"number",false,"PreTaxVal","itemsdata.PreTaxVal"],
+            "Asseasble_Amount (Total_Amount-Discount)": [9978.84,"number",true,"AssAmt","itemsdata.AssAmt"],
+            "Gst_Rate": [12,"number",true,"GstRt","itemsdata.GstRt"],
+            "Sgst_Amount": [0,"number",false,"SgstAmt","itemsdata.SgstAmt"],
+            "Igst_Amount": [1197.46,"number",false,"IgstAmt","itemsdata.IgstAmt"],
+            "Cgst_Amount": [0,"number",false,"CgstAmt","itemsdata.CgstAmt"],
+            "Cess_Rate": [5,"number",false,"CesRt","itemsdata.CesRt"],
+            "Cess_Amount": [498.94,"number",false,"CesAmt","itemsdata.CesAmt"],
+            "Cess_NonAdvlAmount": [10,"number",false,"CesNonAdvlAmt","itemsdata.CesNonAdvlAmt"],
+            "StateCess_Rate": [12,"number",false,"StateCesRt","itemsdata.StateCesRt"],
+            "StateCess_Amount": [1197.46,"number",false,"StateCesAmt","itemsdata.StateCesAmt"],
+            "StateCessNonAdvl_Amount": [5,"number",false,"StateCesNonAdvlAmt","itemsdata.StateCesNonAdvlAmt"],
+            "Other_Charges": [10,"number",false,"OthChrg","itemsdata.OthChrg"],
+            "Total_ItemValue ": [12897.7,"number",true,"TotItemVal","itemsdata.TotItemVal"],
+            "OrdLineRef": ["3256","text",false,"OrdLineRef","itemsdata.OrdLineRef"],
+            "OrgCntry": ["AG","text",false,"OrgCntry","itemsdata.OrgCntry"],
+            "PrdSlNo": ["12345","text",false,"PrdSlNo","itemsdata.PrdSlNo"]
+      },
+      "$schema": {
+            "Version": "1.1",
+            "TranDtls": {
+                  "TaxSch": "GST",
+                  "SupTyp": "B2B",
+                  "RegRev": "N",
+                  "EcmGstin": null,
+                  "IgstOnIntra": "N"
+            },
+            "DocDtls": {
+                  "Typ": "INV",
+                  "No": "MAHI/10",
+                  "Dt": "08/08/2020"
+            },
+            "SellerDtls": {
+                  "Gstin": "29AABCT1332L000",
+                  "LglNm": "ABC company pvt ltd",
+                  "TrdNm": "NIC Industries",
+                  "Addr1": "5th block, kuvempu layout",
+                  "Addr2": "kuvempu layout",
+                  "Loc": "GANDHINAGAR",
+                  "Pin": 560001,
+                  "Stcd": "29",
+                  "Ph": "9000000000",
+                  "Em": "abc@gmail.com"
+            },
+            "BuyerDtls": {
+                  "Gstin": "29AWGPV7107B1Z1",
+                  "LglNm": "XYZ company pvt ltd",
+                  "TrdNm": "XYZ Industries",
+                  "Pos": "37",
+                  "Addr1": "7th block, kuvempu layout",
+                  "Addr2": "kuvempu layout",
+                  "Loc": "GANDHINAGAR",
+                  "Pin": 560004,
+                  "Stcd": "29",
+                  "Ph": "9000000000",
+                  "Em": "abc@gmail.com"
+            },
+            "DispDtls": {
+                  "Nm": "ABC company pvt ltd",
+                  "Addr1": "7th block, kuvempu layout",
+                  "Addr2": "kuvempu layout",
+                  "Loc": "Banagalore",
+                  "Pin": 518360,
+                  "Stcd": "37"
+            },
+            "ShipDtls": {
+                  "Gstin": "29AWGPV7107B1Z1",
+                  "LglNm": "CBE company pvt ltd",
+                  "TrdNm": "kuvempu layout",
+                  "Addr1": "7th block, kuvempu layout",
+                  "Addr2": "kuvempu layout",
+                  "Loc": "Banagalore",
+                  "Pin": 518360,
+                  "Stcd": "37"
+            },
+            "ItemList": [
+
+            ],
+            "ValDtls": {
+                  "AssVal": 9978.84,
+                  "CgstVal": 0,
+                  "SgstVal": 0,
+                  "IgstVal": 1197.46,
+                  "CesVal": 508.94,
+                  "StCesVal": 1202.46,
+                  "Discount": 10,
+                  "OthChrg": 20,
+                  "RndOffAmt": 0.3,
+                  "TotInvVal": 12908,
+                  "TotInvValFc": 12897.7
+            },
+            "PayDtls": {
+                  "Nm": "ABCDE",
+                  "Accdet": "5697389713210",
+                  "Mode": "Cash",
+                  "Fininsbr": "SBIN11000",
+                  "Payterm": "100",
+                  "Payinstr": "Gift",
+                  "Crtrn": "test",
+                  "Dirdr": "test",
+                  "Crday": 100,
+                  "Paidamt": 10000,
+                  "Paymtdue": 5000
+            },
+            "RefDtls": {
+                  "InvRm": "TEST",
+                  "DocPerdDtls": {
+                        "InvStDt": "01/08/2020",
+                        "InvEndDt": "01/09/2020"
+                  },
+                  "PrecDocDtls": [
+                        {
+                              "InvNo": "DOC/002",
+                              "InvDt": "01/08/2020",
+                              "OthRefNo": "123456"
+                        }
+                  ],
+                  "ContrDtls": [
+                        {
+                              "RecAdvRefr": "DOC/002",
+                              "RecAdvDt": "01/08/2020",
+                              "Tendrefr": "Abc001",
+                              "Contrrefr": "Co123",
+                              "Extrefr": "Yo456",
+                              "Projrefr": "Doc-456",
+                              "Porefr": "Doc-789",
+                              "PoRefDt": "01/08/2020"
+                        }
+                  ]
+            },
+            "AddlDocDtls": [
+                  {
+                        "Url": "https://einv-apisandbox.nic.in",
+                        "Docs": "Test Doc",
+                        "Info": "Document Test"
+                  }
+            ],
+            "ExpDtls": {
+                  "ShipBNo": "A-248",
+                  "ShipBDt": "01/08/2020",
+                  "Port": "INABG1",
+                  "RefClm": "N",
+                  "ForCur": "AED",
+                  "CntCode": "AE"
+            },
+            "EwbDtls": {
+                  "Transid": "12AWGPV7107B1Z1",
+                  "Transname": "XYZ EXPORTS",
+                  "Distance": 100,
+                  "Transdocno": "DOC01",
+                  "TransdocDt": "01/08/2020",
+                  "Vehno": "ka123456",
+                  "Vehtype": "R",
+                  "TransMode": "1"
+            }
+      },
+      "empty": {
+            "Version": "1.1",
+            "TranDtls": {
+                  "TaxSch": "",
+                  "SupTyp": "",
+                  "RegRev": "",
+                  "EcmGstin": null,
+                  "IgstOnIntra": ""
+            },
+            "DocDtls": {
+                  "Typ": "INV",
+                  "No": "",
+                  "Dt": ""
+            },
+            "SellerDtls": {
+                  "Gstin": "",
+                  "LglNm": "",
+                  "TrdNm": "",
+                  "Addr1": "",
+                  "Addr2": "",
+                  "Loc": "",
+                  "Pin": null,
+                  "Stcd": "",
+                  "Ph": "",
+                  "Em": ""
+            },
+            "BuyerDtls": {
+                  "Gstin": "",
+                  "LglNm": "",
+                  "TrdNm": "",
+                  "Pos": "",
+                  "Addr1": "",
+                  "Addr2": "",
+                  "Loc": "",
+                  "Pin": null,
+                  "Stcd": "",
+                  "Ph": "",
+                  "Em": ""
+            },
+            "DispDtls": {
+                  "Nm": "",
+                  "Addr1": "",
+                  "Addr2": "",
+                  "Loc": "",
+                  "Pin": null,
+                  "Stcd": ""
+            },
+            "ShipDtls": {
+                  "Gstin": "",
+                  "LglNm": "",
+                  "TrdNm": "",
+                  "Addr1": "",
+                  "Addr2": "",
+                  "Loc": "",
+                  "Pin": null,
+                  "Stcd": ""
+            },
+            "ItemList": [
+                  {
+                        "SlNo": "",
+                        "IsServc": "",
+                        "PrdDesc": "",
+                        "HsnCd": "",
+                        "Barcde": "",
+                        "BchDtls": {
+                              "Nm": "",
+                              "Expdt": "",
+                              "wrDt": ""
+                        },
+                        "Qty": null,
+                        "FreeQty": null,
+                        "Unit": "",
+                        "UnitPrice": null,
+                        "TotAmt": null,
+                        "Discount": null,
+                        "PreTaxVal": null,
+                        "AssAmt": null,
+                        "GstRt": null,
+                        "SgstAmt": null,
+                        "IgstAmt": null,
+                        "CgstAmt": null,
+                        "CesRt": null,
+                        "CesAmt": null,
+                        "CesNonAdvlAmt": null,
+                        "StateCesRt": null,
+                        "StateCesAmt": null,
+                        "StateCesNonAdvlAmt": null,
+                        "OthChrg": null,
+                        "TotItemVal": null,
+                        "OrdLineRef": "",
+                        "OrgCntry": "",
+                        "PrdSlNo": "",
+                        "AttribDtls": [
+                              {
+                                    "Nm": "",
+                                    "Val": ""
+                              }
+                        ]
+                  }
+            ],
+            "ValDtls": {
+                  "AssVal": null,
+                  "CgstVal": null,
+                  "SgstVal": null,
+                  "IgstVal": null,
+                  "CesVal": null,
+                  "StCesVal": null,
+                  "Discount": null,
+                  "OthChrg": null,
+                  "RndOffAmt": null,
+                  "TotInvVal": null,
+                  "TotInvValFc": null
+            },
+            "PayDtls": {
+                  "Nm": "",
+                  "Accdet": "",
+                  "Mode": "",
+                  "Fininsbr": "",
+                  "Payterm": "",
+                  "Payinstr": "",
+                  "Crtrn": "",
+                  "Dirdr": "",
+                  "Crday": null,
+                  "Paidamt": null,
+                  "Paymtdue": null
+            },
+            "RefDtls": {
+                  "InvRm": "",
+                  "DocPerdDtls": {
+                        "InvStDt": "",
+                        "InvEndDt": ""
+                  },
+                  "PrecDocDtls": [
+                        {
+                              "InvNo": "",
+                              "InvDt": "",
+                              "OthRefNo": ""
+                        }
+                  ],
+                  "ContrDtls": [
+                        {
+                              "RecAdvRefr": "",
+                              "RecAdvDt": "",
+                              "Tendrefr": "",
+                              "Contrrefr": "",
+                              "Extrefr": "",
+                              "Projrefr": "",
+                              "Porefr": "",
+                              "PoRefDt": ""
+                        }
+                  ]
+            },
+            "AddlDocDtls": [
+                  {
+                        "Url": "",
+                        "Docs": "",
+                        "Info": ""
+                  }
+            ],
+            "ExpDtls": {
+                  "ShipBNo": "",
+                  "ShipBDt": "",
+                  "Port": "",
+                  "RefClm": "",
+                  "ForCur": "",
+                  "CntCode": ""
+            },
+            "EwbDtls": {
+                  "Transid": "",
+                  "Transname": "",
+                  "Distance": null,
+                  "Transdocno": "",
+                  "TransdocDt": "",
+                  "Vehno": "",
+                  "Vehtype": "",
+                  "TransMode": ""
+            }
+      }
+
+}
