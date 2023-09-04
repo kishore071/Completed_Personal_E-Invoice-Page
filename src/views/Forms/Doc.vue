@@ -33,23 +33,23 @@
                 </label>
                 <label class="input-label">
                   <span>Preceding Invoice Date:</span>
-                  <input type="date" required
+                  <input type="date" @input="event => updateDate(event, products)"
                          v-model="products.InvDt"
                          name="InvNo" placeholder="" />
                 </label>
                 <label class="input-label">
                   <span>Other Reference:</span>
-                  <input type="date"
+                  <input type="text"
                          v-model="products.OthRefNo"
                          name="OthRefNo" placeholder="" />
                 </label>
-                  <button @click="existingdeleter(products.InvNo)">Delete Preceding Doc {{products.InvNo}}</button>
+                  <button @click.self="existingdeleter(products.InvNo)" v-if="PreDocDtls.length>1">Delete Preceding Doc {{products.InvNo}}</button>
                 </div>
                 <button type="submit" v-if="!buttonvalidater">Submit Data</button>
               </form>
               <button @click="addlist">Add PreDocDtls</button>
+              <button @click="pushNext" v-if="buttonvalidater"> Next Page</button>
             </div>
-          <button @click="pushNext" v-if="buttonvalidater"> Next Page</button>
         </div>
     </div>
 </template>
@@ -72,8 +72,14 @@ import {v4 as uuidv4} from 'uuid';
             OthRefNo: ''
           };
         };
+        const updateDate = (event, product) => {
+          const inputDate = event.target.value;
+          const [year, month, day] = inputDate.split("-");
+          const formattedDate = `${day}/${month}/${year}`;
+          product.InvDt = formattedDate;
+        };
         const existingdeleter=(InvNo)=>{
-          const index=PreDocDtls.value.findIndex((indexer)=>indexer.InvNo===InvNo)
+          const index=PreDocDtls.value.findIndex((indexer)=>indexer.InvNo===InvNo);
           if(index!==null){
             PreDocDtls.value.splice(index,1);
           }
@@ -96,21 +102,21 @@ import {v4 as uuidv4} from 'uuid';
           if (items.value.RefDtls.PrecDocDtls[0].InvNo === "") {
             const num = SinoGenerator();
             items.value.RefDtls.PrecDocDtls[0].InvNo = num;
-            PreDocDtls.value.InvNo = num;
+            PreDocDtls.value[0].InvNo = num;
           }
           //pushing the itemlist PreDocDtls inside a temp list
         });
         const buttonvalidater = ref(false);
         const validater = () => {
           items.value.RefDtls={...RefDtls.value};
-          items.value.PreDocDtls={...PreDocDtls.value};
+          items.value.RefDtls.PrecDocDtls=[...PreDocDtls.value];
           console.log(items.value);
           buttonvalidater.value=true;
         }
         const pushNext = () => {
           emit('forward', items.value);
         }
-        return {items,RefDtls, existingdeleter,buttonvalidater, validater, pushNext, PreDocDtls,createNewItemdata,addlist}
+        return {items,RefDtls,updateDate,existingdeleter,buttonvalidater, validater, pushNext, PreDocDtls,createNewItemdata,addlist}
       }
 
     }

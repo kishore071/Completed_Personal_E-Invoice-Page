@@ -32,6 +32,7 @@ import itemList from '@/JsonContainer/itemlist.json';
 import val_dtls from "@/views/Forms/Val_dtls.vue";
 import ItemList from "@/views/Forms/ItemList.vue";
 import EndResult from "@/views/Result/EndResult.vue";
+import Eway_bil from "@/views/Forms/Eway_bil.vue";
 export default {
 
   //methods: {render},
@@ -41,7 +42,7 @@ export default {
     Seller_Buyer,
     ItemListContainer,
     Suspense,
-    Doc,EndResult
+    Doc,EndResult,Eway_bil
   },
   setup() {
     const Itemlist=ref();
@@ -71,8 +72,12 @@ export default {
             return val_dtls;
           case 6:
             return Doc;
-          default:
+          case 7:
+            return Eway_bil;
+          case 8:
             return EndResult;
+          default:
+            return null;
         }
       }
       return null;
@@ -118,7 +123,8 @@ export default {
         // Replace this with your actual data fetching logic
         //const response = await fetchData();
         //data.value = response.data;
-        data.value=[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 },{ id: 5 },{id:6}];
+        data.value=[{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 },{ id: 5 },
+          { id : 6 },{ id : 7 },{ id : 8 }];
         Itemlist.value=await itemList.empty;
         //console.log(Itemlist.value);
       } catch (error) {

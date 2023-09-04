@@ -72,7 +72,7 @@ export default {
       componentList.value=await props.value;
       console.log(componentList.value[0].id);
       console.log(componentList.value);
-      if(componentList.value.length===1 && fulllist.value.ItemList.IsServc===""){
+      if(componentList.value.length===1 && fulllist.value.ItemList[0].IsServc===''){
         console.log("never website updated");
         fulllist.value.ItemList[0].SlNo="1";
       }

@@ -52,12 +52,12 @@
             <label class="input-label">
                 <span>Attribute_Name:</span>
                 <input type="text" required name="AttrNm"
-                       v-model="itemsdata.AttribDtls.Nm" placeholder="Attribute Name(e.g:'Rice')" />
+                       v-model="itemsdata.AttribDtls[0].Nm" placeholder="Attribute Name(e.g:'Rice')" />
             </label>
             <label class="input-label">
                 <span>Attribute_Value:</span>
                 <input type="text" required name="AttrVal"
-                       v-model="itemsdata.AttribDtls.Val" placeholder="Attribute Value(e.g:'10000')" />
+                       v-model="itemsdata.AttribDtls[0].Val" placeholder="Attribute Value(e.g:'10000')" />
             </label>
         <button type="submit">Submit</button>
       </form>
@@ -68,7 +68,7 @@
 
 <script>
 import itemlist from '@/JsonContainer/itemlist.json';
-import { onMounted, ref } from 'vue';
+import {onMounted, ref,} from 'vue';
 import { createDefaultItem } from '@/Functions/DefaultStructure';
 
 export default {
@@ -87,9 +87,18 @@ export default {
       SlNo.value = props.itemsSlNo;
       console.log(SlNo.value);
     });
-
     const addList = async () => {
-      itemsdata.value.SlNo =await SlNo.value; // Update the SlNo here
+      itemsdata.value.UnitPrice=await parseFloat(itemsdata.value.UnitPrice).toFixed(3);
+      itemsdata.value.TotAmt=await parseFloat(itemsdata.value.TotAmt).toFixed(2);
+      itemsdata.value.AssAmt=await parseFloat(itemsdata.value.AssAmt).toFixed(2);
+      itemsdata.value.GstRt=await parseFloat(itemsdata.value.GstRt).toFixed(3);
+      itemsdata.value.TotItemVal=await parseFloat(itemsdata.value.TotItemVal).toFixed(2);
+      //itemsdata.value.SlNo =await SlNo.value; // Update the SlNo here
+      // itemsdata.value.Qty=await parseFloat(itemsdata.value.Qty).toFixed(3);
+      // itemsdata.value.FreeQty=await Number(itemsdata.value.FreeQty).toFixed(3);
+      // itemsdata.value.Discount=await parseFloat(itemsdata.value.Discount).toFixed(2);
+      // itemsdata.value.PreTaxVal=await parseFloat(itemsdata.value.PreTaxVal).toFixed(2);
+      // itemsdata.value.IgstAmt=await parseFloat(itemsdata.value.IgstAmt).toFixed(2);
       buttonvalidator.value = true;
     };
 

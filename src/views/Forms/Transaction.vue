@@ -4,24 +4,39 @@
       <form @submit.prevent="checker">
         <label class="info">Transaction Details</label>
         <label class="input-label">
-          <span>TaxSch:</span>
+          <span>Tax Scheme:</span>
           <input type="text" required name="TaxSch" placeholder="TaxSch" v-model="TranDtls.TaxSch"/>
         </label>
         <label class="input-label">
-          <span>SupTyp:</span>
-          <input type="text" required name="SupTyp" placeholder="SupTyp" v-model="TranDtls.SupTyp"/>
+          <span>Transaction Category:</span>
+          <select name="Typ" required v-model="TranDtls.SupTyp">
+            <option value="B2B" selected>Business to Business</option>
+            <option value="B2C" selected>Business to Customer</option>
+            <option value="SEZWP">To SEZ with Payment.</option>
+            <option value="SEZWOP">To SEZ with Out Payment.</option>
+            <option value="EXPWP">Export with Payment</option>
+            <option value="EXPWOP">Export without Payment</option>
+            <option value="WP">No</option>
+            <option value="DEXP">Deemed Export</option>
+          </select>
         </label>
         <label class="input-label">
-          <span>RegRev:</span>
-          <input type="text" required name="RegRev" placeholder="RegRev" v-model="TranDtls.RegRev"/>
+          <span>Whether Reverse Charge:</span>
+          <select name="Typ" v-model="TranDtls.RegRev">
+            <option value="Y" selected>Yes</option>
+            <option value="N">No</option>
+          </select>
         </label>
         <label class="input-label">
-          <span>EcmGstin:</span>
-          <input type="text" required name="EcmGstin" placeholder="EcmGstin" v-model="TranDtls.EcmGstin"/>
+          <span>GSTIN Of E-Invoice Operator:</span>
+          <input type="text" name="EcmGstin" placeholder="EcmGstin" v-model="TranDtls.EcmGstin"/>
         </label>
         <label class="input-label">
-          <span>IgstOnIntra:</span>
-          <input type="text" name="IgstOnIntra" placeholder="IgstOnIntra" v-model="TranDtls.IgstOnIntra"/>
+          <span>Igst On Intra:</span>
+          <select name="Typ" v-model="TranDtls.IgstOnIntra">
+            <option value="Y" selected>Yes</option>
+            <option value="N">No</option>
+          </select>
         </label>
         <b class="info">Document Details</b>
         <label class="input-label">
@@ -52,6 +67,7 @@ import {onMounted, ref} from 'vue';
 //import itemList from "@/views/Forms/ItemList.vue";
 //import { useRouter } from 'vue-router';
 import items from '@/JsonContainer/itemlist.json';
+import {DateExchange} from "@/Functions/DefaultStructure";
 export default{
   name:"TransactionVue",
   props:['page_load','itemlist'],
@@ -79,12 +95,16 @@ export default{
     });
     const checker=()=>{
       //const {TaxSch,SupTyp,RegRev,IgstOnIntra,EcmGstin,Dt,No,Typ}=Object.fromEntries(new FormData(event.target));
-      itemlists.value.TranDtls.TaxSch=TranDtls.value.TaxSch;
-      itemlists.value.TranDtls.SupTyp=TranDtls.value.SupTyp;
-      itemlists.value.TranDtls.RegRev=TranDtls.value.RegRev;
-      itemlists.value.TranDtls.IgstOnIntra=TranDtls.value.IgstOnIntra;
-      itemlists.value.TranDtls.EcmGstin=TranDtls.value.EcmGstin;
-      itemlists.value.DocDtls.Dt=DoctDtls.value.Dt;
+      // itemlists.value.TranDtls.TaxSch=TranDtls.value.TaxSch;
+      // itemlists.value.TranDtls.SupTyp=TranDtls.value.SupTyp;
+      // itemlists.value.TranDtls.RegRev=TranDtls.value.RegRev;
+      // itemlists.value.TranDtls.IgstOnIntra=TranDtls.value.IgstOnIntra;
+      // itemlists.value.TranDtls.EcmGstin=TranDtls.value.EcmGstin;
+      itemlists.value.TranDtls={...TranDtls.value};
+      const date=DateExchange(new Date(DoctDtls.value.Dt));
+      itemlists.value.DocDtls.Dt=date;
+      //console.log(DoctDtls.value.Dt.year);
+      //itemlists.value.DocDtls.Dt=DoctDtls.value.Dt;
       itemlists.value.DocDtls.No=DoctDtls.value.No;
       itemlists.value.DocDtls.Typ=DoctDtls.value.Typ;
       if(taxsch.value!=null){

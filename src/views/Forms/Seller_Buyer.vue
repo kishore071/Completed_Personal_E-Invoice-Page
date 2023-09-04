@@ -131,33 +131,35 @@ import items from '@/JsonContainer/itemlist.json';
             finallist.value = await props.itemlist;
             console.log(finallist.value);
           });
-          const validate = () => {
+          const validate = async () => {
             // const {
             //   Gstinsel, suppLglNm, suppTrdNm, suppaddr1, suppaddr2, suppLoc, suppin, supphn, suppcode, suppem
             //   , Gstin, buyLglNm, buyTrdNm, buyaddr1, buyaddr2, buyLoc, buypin, buycode, buyphn, buyem
             // } = Object.fromEntries(new FormData(event.target));
             //Seller Details Updater
-            finallist.value.SellerDtls.Gstin = SellerDtls.value.Gstin;
-            finallist.value.SellerDtls.LglNm = SellerDtls.value.LglNm;
-            finallist.value.SellerDtls.TrdNm = SellerDtls.value.TrdNm;
-            finallist.value.SellerDtls.Addr1 = SellerDtls.value.Addr1;
-            finallist.value.SellerDtls.Addr2 = SellerDtls.value.Addr2;
-            finallist.value.SellerDtls.Loc = SellerDtls.value.Loc;
-            finallist.value.SellerDtls.Pin = Number(SellerDtls.value.Pin);
-            finallist.value.SellerDtls.Stcd = SellerDtls.value.Stcd;
-            finallist.value.SellerDtls.Ph = SellerDtls.value.Ph;
-            finallist.value.SellerDtls.Em = SellerDtls.value.Em;
+            // finallist.value.SellerDtls.Gstin = SellerDtls.value.Gstin;
+            // finallist.value.SellerDtls.LglNm = SellerDtls.value.LglNm;
+            // finallist.value.SellerDtls.TrdNm = SellerDtls.value.TrdNm;
+            // finallist.value.SellerDtls.Addr1 = SellerDtls.value.Addr1;
+            // finallist.value.SellerDtls.Addr2 = SellerDtls.value.Addr2;
+            // finallist.value.SellerDtls.Loc = SellerDtls.value.Loc;
+            finallist.value.SellerDtls.Pin =await Number(SellerDtls.value.Pin);
+            finallist.value.SellerDtls={...SellerDtls.value};
+            // finallist.value.SellerDtls.Stcd = SellerDtls.value.Stcd;
+            // finallist.value.SellerDtls.Ph = SellerDtls.value.Ph;
+            // finallist.value.SellerDtls.Em = SellerDtls.value.Em;
             //Buyer Details Inputing Updater
-            finallist.value.BuyerDtls.Gstin = BuyerDtls.value.Gstin;
-            finallist.value.BuyerDtls.LglNm = BuyerDtls.value.LglNm;
-            finallist.value.BuyerDtls.TrdNm = BuyerDtls.value.TrdNm;
-            finallist.value.BuyerDtls.Addr1 = BuyerDtls.value.Addr1;
-            finallist.value.BuyerDtls.Addr2 = BuyerDtls.value.Addr2;
-            finallist.value.BuyerDtls.Loc = BuyerDtls.value.Loc;
-            finallist.value.BuyerDtls.Pin = Number(BuyerDtls.value.Pin);
-            finallist.value.BuyerDtls.Stcd = BuyerDtls.value.Stcd;
-            finallist.value.BuyerDtls.Ph = BuyerDtls.value.Ph;
-            finallist.value.BuyerDtls.Em = BuyerDtls.value.Em;
+            // finallist.value.BuyerDtls.Gstin = BuyerDtls.value.Gstin;
+            // finallist.value.BuyerDtls.LglNm = BuyerDtls.value.LglNm;
+            // finallist.value.BuyerDtls.TrdNm = BuyerDtls.value.TrdNm;
+            // finallist.value.BuyerDtls.Addr1 = BuyerDtls.value.Addr1;
+            // finallist.value.BuyerDtls.Addr2 = BuyerDtls.value.Addr2;
+            // finallist.value.BuyerDtls.Loc = BuyerDtls.value.Loc;
+            finallist.value.BuyerDtls.Pin =await Number(BuyerDtls.value.Pin);
+            finallist.value.BuyerDtls={...BuyerDtls.value};
+            // finallist.value.BuyerDtls.Stcd = BuyerDtls.value.Stcd;
+            // finallist.value.BuyerDtls.Ph = BuyerDtls.value.Ph;
+            // finallist.value.BuyerDtls.Em = BuyerDtls.value.Em;
             console.log(finallist.value.SellerDtls);
             console.log(finallist.value.BuyerDtls);
             butttonpresence.value = !butttonpresence.value;

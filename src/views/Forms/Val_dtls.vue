@@ -148,7 +148,7 @@
 </template>
 
 <script>
-import {onMounted, ref} from "vue";
+import { onMounted, ref} from "vue";
 import itemref from '@/JsonContainer/itemlist.json'
     export default {
         props:{'itemlist':Object},
@@ -166,10 +166,18 @@ import itemref from '@/JsonContainer/itemlist.json'
           await loader();
           fulllist.value=await props.itemlist;
         });
-          const validater=()=>{
+          const validater=async ()=>{
+            //console.log(formattedValDtls);
+            ValDtls.value.AssVal=await Number(ValDtls.value.AssVal).toFixed(3);
+            ValDtls.value.AssVal=await Number(ValDtls.value.AssVal);
+            ValDtls.value.TotInvVal=await Number(ValDtls.value.TotInvVal).toFixed(3);
+            ValDtls.value.TotInvVal=await Number(ValDtls.value.TotInvVal)
             fulllist.value.ValDtls={...ValDtls.value};
+            PayDtls.value.Crday=await Number(PayDtls.value.Crday);
+            PayDtls.value.Paymtdue=await Number(PayDtls.value.Paymtdue);
             fulllist.value.PayDtls={...PayDtls.value};
             buttonvalidator.value=false;
+            console.log(fulllist.value);
           }
         const nextpage=()=>{
             emit('forward',fulllist.value);

@@ -92,24 +92,24 @@ import items from '@/JsonContainer/itemlist.json';
             itemlists.value=await props.itemlist;
             console.log(itemlists.value);
           });
-          const validater=()=>{
+          const validater=async ()=>{
             //const{}
-            itemlists.value.DispDtls.Nm=DispDtls.value.Nm;
-            itemlists.value.DispDtls.Stcd=DispDtls.value.Stcd;
-            itemlists.value.DispDtls.Pin=Number(DispDtls.value.Pin);
-            itemlists.value.DispDtls.Addr1=DispDtls.value.Addr1;
-            itemlists.value.DispDtls.Addr2=DispDtls.value.Addr2;
-            itemlists.value.DispDtls.Loc=DispDtls.value.Loc;
-
-            itemlists.value.ShipDtls.Gstin=ShipDtls.value.Gstin;
-
-            itemlists.value.ShipDtls.LglNm=ShipDtls.value.LglNm;
-            itemlists.value.ShipDtls.TrdNm=ShipDtls.value.TrdNm;
-            itemlists.value.ShipDtls.Addr1=ShipDtls.value.Addr1;
-            itemlists.value.ShipDtls.Addr2=ShipDtls.value.Addr2;
-            itemlists.value.ShipDtls.Loc=ShipDtls.value.Loc;
-            itemlists.value.ShipDtls.Pin=ShipDtls.value.Pin;
-            itemlists.value.ShipDtls.Stcd=ShipDtls.value.Stcd;
+            // itemlists.value.DispDtls.Nm=DispDtls.value.Nm;
+            // itemlists.value.DispDtls.Stcd=DispDtls.value.Stcd;
+            itemlists.value.DispDtls.Pin=await Number(DispDtls.value.Pin);
+            // itemlists.value.DispDtls.Addr1=DispDtls.value.Addr1;
+            // itemlists.value.DispDtls.Addr2=DispDtls.value.Addr2;
+            // itemlists.value.DispDtls.Loc=DispDtls.value.Loc;
+            itemlists.value.DispDtls={...DispDtls.value}
+            // itemlists.value.ShipDtls.Gstin=ShipDtls.value.Gstin;
+            // itemlists.value.ShipDtls.LglNm=ShipDtls.value.LglNm;
+            // itemlists.value.ShipDtls.TrdNm=ShipDtls.value.TrdNm;
+            // itemlists.value.ShipDtls.Addr1=ShipDtls.value.Addr1;
+            // itemlists.value.ShipDtls.Addr2=ShipDtls.value.Addr2;
+            // itemlists.value.ShipDtls.Loc=ShipDtls.value.Loc;
+            itemlists.value.ShipDtls.Pin=await Number(ShipDtls.value.Pin);
+            itemlists.value.ShipDtls={...ShipDtls.value}
+            // itemlists.value.ShipDtls.Stcd=ShipDtls.value.Stcd;
           };
           return{itemlists,validater,DispDtls,ShipDtls};
         },
