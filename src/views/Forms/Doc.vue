@@ -5,49 +5,76 @@
             <div class="input-group">
               <form @submit.prevent="validater">
                 <label for="" class="info">Reference Details</label>
-                <label class="input-label">
-                  <span>Invoice Remarks:</span>
-                  <input type="text" required
+                <div class="form-floating mb-6">
+                  <input type="text" required class="form-control"
                          v-model="RefDtls.InvRm"
                          name="InvRm" placeholder="Invoice Remarks:(e.g:'TEST')" />
-                </label>
+                  <label class="fw-bold" for="InvRm">Invoice Remarks
+                    <span class="star">*</span></label>
+                </div>
                 <label class="info"> Document Period Details</label>
-                <label class="input-label">
-                    <span>Invoice Start Date:</span>
-                    <input type="date" required
+                <div class="row">
+                <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="date" required class="form-control"
                            v-model="RefDtls.DocPerdDtls.InvStDt"
                            name="InvStDt" placeholder="" />
-                </label>
-                <label class="input-label">
-                    <span>Invoice End Date:</span>
-                    <input type="date" required
+                  <label class="fw-bold" for="InvStDt">
+                    Invoice Start Date
+                    <span class="star"> *</span></label></div>
+                </div>
+                  <div class="col-md-6">
+                    <div class="form-floating mb-3">
+                    <input type="date" required class="form-control"
                            v-model="RefDtls.DocPerdDtls.InvEndDt"
                            name="InvEndDt" placeholder="" />
-                </label>
-                <div class="PreDocDtls" v-for="products in PreDocDtls" :key="products.InvNo">
-                  <label class="info">Generated Preceding Document Details for {{products.InvNo}}</label>
-                  <label class="input-label">
-                    <span>Preceding Invoice Number:</span>
-                    <input type="text" required readonly
+                    <label class="fw-bold" for="InvEndDt">
+                      <span>Invoice End Date:</span>
+                </label></div></div>
+                </div>
+                <table class="table-bordered table">
+                  <thead>
+                  <tr>
+                    <th>Add Document</th>
+                    <th>Invoice Number</th>
+                    <th>Invoice Date</th>
+                    <th>Other Reference</th>
+                    <th>Delete Document</th>
+                  </tr>
+                  </thead>
+                <tbody class="PreDocDtls" v-for="products in PreDocDtls" :key="products.InvNo">
+                <tr>
+                  <td>
+                    <button @click.self="addlist"><span class="material-icons">add_to_queue</span></button>
+                  </td>
+                  <td>
+                    <div class="form-floating">
+                    <input type="text" required readonly class="form-control"
                            v-model="products.InvNo" name="InvNo" placeholder="" />
-                </label>
-                <label class="input-label">
-                  <span>Preceding Invoice Date:</span>
-                  <input type="date" @input="event => updateDate(event, products)"
+                    <label class="input-label fw-bold">
+                      Preceding Invoice Number<span class="star">*</span></label>
+                    </div></td>
+                  <td>
+                    <div class="form-floating">
+                      <input type="date" @input="event => updateDate(event, products)" class="form-control"
                          v-model="products.InvDt"
                          name="InvNo" placeholder="" />
-                </label>
-                <label class="input-label">
-                  <span>Other Reference:</span>
-                  <input type="text"
+                      <label for="InvNo" class="fw-bold">
+                        Preceding Invoice Date<span class="star"> *</span></label>
+                    </div></td>
+                  <td>
+                    <div class="form-floating">
+                      <input type="text" class="form-control"
                          v-model="products.OthRefNo"
                          name="OthRefNo" placeholder="" />
-                </label>
-                  <button @click.self="existingdeleter(products.InvNo)" v-if="PreDocDtls.length>1">Delete Preceding Doc {{products.InvNo}}</button>
-                </div>
+                      <label class="fw-bold" for="OthRefNo">
+                        Other Reference<span class="star"> *</span>
+                      </label></div></td>
+                  <td>
+                  <button @click="existingdeleter(products.InvNo)" :disabled="PreDocDtls.length===1">Delete Preceding Doc {{products.InvNo}}</button>
+                  </td></tr></tbody></table>
                 <button type="submit" v-if="!buttonvalidater">Submit Data</button>
               </form>
-              <button @click="addlist">Add PreDocDtls</button>
               <button @click="pushNext" v-if="buttonvalidater"> Next Page</button>
             </div>
         </div>

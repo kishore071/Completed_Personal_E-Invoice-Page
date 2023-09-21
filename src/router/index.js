@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Seller_BuyerVue from '@/views/Forms/Seller_Buyer.vue'
-
+import FormContainerVue from '../views/FormContainer.vue'
 const routes = [
   {
     path: '/',
@@ -17,22 +16,11 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/FormContainer.vue')
   },
   {
-    path:'/Sup-details/:uniqueid',
-    name:'Seller_Buyer-Details',
-    component:Seller_BuyerVue,
+    path:'/E-Invoice',
+    name:'E-Invoice_page_invoice',
+    component:FormContainerVue,
     props:true,
   },
-  {
-    path:'/Price',
-    name:'Seller_Buyer-Price',
-    component:import('../views/Forms/Val_dtls.vue'),
-    props:true,
-  },
-  {
-    path:'/Documents',
-    name:'Seller_Buyer-Documents',
-    component:import('../views/Forms/Doc.vue'),
-  }
 ]
 
 const router = createRouter({

@@ -1,102 +1,141 @@
 <template>
-    <div class="center-container">
-        <div class="input-group">
-          <form @submit.prevent="validate">
-            <label class="info">Seller Details</label>
-            <label class="input-label">
-              <span>Gst Number:</span>
-              <input type="text" required name="Gstinsel" :class="error?'error':''" placeholder="Seller Gst" v-model="SellerDtls.Gstin"/>
-            </label>
-            <label class="input-label">
-              <span>Supplier Legal Name:</span>
-              <input type="text" required name="suppLglNm" placeholder="Seller Legal Name" v-model="SellerDtls.LglNm"/>
-            </label>
-            <label class="input-label">
-              <span>Trader Name:</span>
-              <input type="text" name="suppTrdNm" placeholder="Seller Trader Name" v-model="SellerDtls.TrdNm"/>
-            </label>
-            <div class="address">
-              <label class="input-label">
-                <span>Address 1:</span>
-                <input type="text" required name="suppaddr1" placeholder="Seller Address 1" v-model="SellerDtls.Addr1"/>
-              </label>
-              <label class="input-label">
-                <span>Address 2:</span>
-                <input type="text" name="suppaddr2" placeholder="Seller Address 2" v-model="SellerDtls.Addr2"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Place:</span>
-                <input type="text" required name="suppLoc" placeholder="Seller Place or Location (e.g:- Bangalore)" v-model="SellerDtls.Loc"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Code:</span>
-                <input type="number" required name="suppin" placeholder="Seller Pin (e.g:- 560001)" v-model="SellerDtls.Pin"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier State Code:</span>
-                <input type="text" required name="suppcode" placeholder="Seller State Code (e.g:- 29)" v-model="SellerDtls.Stcd"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Phone:</span>
-                <input type="text" name="supphn" placeholder="Seller Phone (e.g:-9000000000)" v-model="SellerDtls.Ph"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Email:</span>
-                <input type="text" name="suppem" placeholder="Seller Email (e.g:- abc@gmail.com)" v-model="SellerDtls.Em"/>
-              </label>
+  <div class="container">
+    <div class="from-group">
+        <form @submit.prevent="validate">
+          <label class="info">Seller Details</label>
+          <div class="row">
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="Gstinsel" :class="error ? 'form-control is-invalid' : 'form-control is-valid'" id="sellerGstin" placeholder="Seller GST" v-model="SellerDtls.Gstin"/>
+              <div class="invalid-feedback">Please enter a valid GST number.</div>
+              <label for="sellerGstin">Seller GST</label>
             </div>
-            <label class="info">Buyer Details</label>
-            <label class="input-label">
-              <span>Gst Number:</span>
-              <input type="text" required name="Gstin" placeholder="Buyer Gst" v-model="BuyerDtls.Gstin"/>
-            </label>
-            <label class="input-label">
-              <span>Supplier Legal Name:</span>
-              <input type="text" required name="buyLglNm" placeholder="Buyer Legal Name" v-model="BuyerDtls.LglNm"/>
-            </label>
-            <label class="input-label">
-              <span>Trader Name:</span>
-              <input type="text" name="buyTrdNm" placeholder="Buyer Trader Name" v-model="BuyerDtls.TrdNm"/>
-            </label>
-            <label class="input-label">
-              <span>Trader Pos:</span>
-              <input type="text" name="buyTrdNm" placeholder="Buyer Pos " v-model="BuyerDtls.Pos"/>
-            </label>
-            <div class="address">
-              <label class="input-label">
-                <span>Address 1:</span>
-                <input type="text" required name="buyaddr1" placeholder="Buyer Address 1" v-model="BuyerDtls.Addr1"/>
-              </label>
-              <label class="input-label">
-                <span>Address 2:</span>
-                <input type="text" name="buyaddr2" placeholder="Buyer Address 2" v-model="BuyerDtls.Addr2"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Place:</span>
-                <input type="text" required name="buyLoc" placeholder="Buyer Place or Location (e.g:- Bangalore)" v-model="BuyerDtls.Loc"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Code:</span>
-                <input type="number" name="buypin" placeholder="Buyer Pin (e.g:- 560001)" v-model="BuyerDtls.Pin"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier State Code:</span>
-                <input type="text" required name="buycode" placeholder="Buyer State Code (e.g:- 29)" v-model="BuyerDtls.Stcd"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Phone:</span>
-                <input type="text" name="buyphn" placeholder="Buyer Phone (e.g:-9000000000)" v-model="BuyerDtls.Ph"/>
-              </label>
-              <label class="input-label">
-                <span>Supplier Email:</span>
-                <input type="text" name="buyem" placeholder="Buyer Email (e.g:- abc@gmail.com)" v-model="BuyerDtls.Em"/>
-              </label>
             </div>
-            <button type="submit" v-if="!butttonpresence">Submit</button>
-          </form>
-          <button @click.self="next(finallist)">Next</button>
-        </div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="suppLglNm" class="form-control" id="sellerLegalName" placeholder="Seller Legal Name" v-model="SellerDtls.LglNm"/>
+              <label for="sellerLegalName">Seller Legal Name</label>
+            </div>
+            </div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" name="suppTrdNm" class="form-control" id="sellerTraderName" placeholder="Seller Trader Name" v-model="SellerDtls.TrdNm"/>
+              <label for="sellerTraderName">Seller Trader Name</label>
+            </div>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" required name="suppaddr1" class="form-control" id="sellerAddress1" placeholder="Seller Address 1" v-model="SellerDtls.Addr1"/>
+              <label for="sellerAddress1">Seller Address 1</label>
+            </div></div>
+            <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" name="suppaddr2" class="form-control" id="sellerAddress2" placeholder="Seller Address 2" v-model="SellerDtls.Addr2"/>
+              <label for="sellerAddress2">Seller Address 2</label>
+            </div></div>
+          </div>
+          <div class="row">
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="suppLoc" class="form-control" id="sellerPlace" placeholder="Seller Place or Location (e.g:- Bangalore)" v-model="SellerDtls.Loc"/>
+              <label for="sellerPlace">Seller Place or Location</label>
+            </div></div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="number" required name="suppin" class="form-control" id="sellerPin" placeholder="Seller Pin (e.g:- 560001)" v-model="SellerDtls.Pin"/>
+              <label for="sellerPin">Seller Pin</label>
+            </div></div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="suppcode" class="form-control" id="sellerStateCode" placeholder="Seller State Code (e.g:- 29)" v-model="SellerDtls.Stcd"/>
+              <label for="sellerStateCode">Seller State Code</label>
+            </div></div>
+          </div>
+          <div class="row">
+          <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" name="supphn" class="form-control" id="sellerPhone" placeholder="Seller Phone (e.g:-9000000000)" v-model="SellerDtls.Ph"/>
+              <label for="sellerPhone">Seller Phone</label>
+            </div></div>
+            <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" name="suppem" class="form-control" id="sellerEmail" placeholder="Seller Email (e.g:- abc@gmail.com)" v-model="SellerDtls.Em"/>
+              <label for="sellerEmail">Seller Email</label>
+            </div></div>
+          </div>
+          <label class="info">Buyer Details</label>
+          <div class="row">
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="Gstin" class="form-control" id="buyerGstin" placeholder="Buyer GST" v-model="BuyerDtls.Gstin"/>
+              <label for="buyerGstin">Buyer GST</label>
+            </div></div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="buyLglNm" class="form-control" id="buyerLegalName" placeholder="Buyer Legal Name" v-model="BuyerDtls.LglNm"/>
+              <label for="buyerLegalName">Buyer Legal Name</label>
+            </div></div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" name="buyTrdNm" class="form-control" id="buyerTraderName" placeholder="Buyer Trader Name" v-model="BuyerDtls.TrdNm"/>
+              <label for="buyerTraderName">Buyer Trader Name</label>
+            </div></div>
+          </div>
+          <div class="row">
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" name="buyTrdNm" class="form-control" id="buyerPos" placeholder="Buyer Pos" v-model="BuyerDtls.Pos"/>
+              <label for="buyerPos">Buyer Pos</label>
+            </div></div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="buyaddr1" class="form-control" id="buyerAddress1" placeholder="Buyer Address 1" v-model="BuyerDtls.Addr1"/>
+              <label for="buyerAddress1">Buyer Address 1</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" name="buyaddr2" class="form-control" id="buyerAddress2" placeholder="Buyer Address 2" v-model="BuyerDtls.Addr2"/>
+              <label for="buyerAddress2">Buyer Address 2</label>
+            </div>
+          </div></div>
+          <div class="row">
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="buyLoc" class="form-control" id="buyerPlace" placeholder="Buyer Place or Location (e.g:- Bangalore)" v-model="BuyerDtls.Loc"/>
+              <label for="buyerPlace">Buyer Place or Location</label>
+            </div></div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="number" name="buypin" class="form-control" id="buyerPin" placeholder="Buyer Pin (e.g:- 560001)" v-model="BuyerDtls.Pin"/>
+              <label for="buyerPin">Buyer Pin</label>
+            </div></div>
+            <div class="col-md-4">
+            <div class="form-floating mb-3">
+              <input type="text" required name="buycode" class="form-control" id="buyerStateCode" placeholder="Buyer State Code (e.g:- 29)" v-model="BuyerDtls.Stcd"/>
+              <label for="buyerStateCode">Buyer State Code</label>
+            </div></div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" name="buyphn" class="form-control" id="buyerPhone" placeholder="Buyer Phone (e.g:-9000000000)" v-model="BuyerDtls.Ph"/>
+              <label for="buyerPhone">Buyer Phone</label>
+            </div></div>
+            <div class="col-md-6">
+            <div class="form-floating mb-3">
+              <input type="text" name="buyem" class="form-control" id="buyerEmail" placeholder="Buyer Email (e.g:- abc@gmail.com)" v-model="BuyerDtls.Em"/>
+              <label for="buyerEmail">Buyer Email</label>
+            </div>
+            </div>
+          </div>
+          <button type="submit" v-if="!butttonpresence" class="btn btn-primary">Submit</button>
+        </form>
+        <button @click.self="next(finallist)" class="btn btn-secondary">Next</button>
       </div>
+  </div>
 </template>
 
 <script>
@@ -184,7 +223,7 @@ import items from '@/JsonContainer/itemlist.json';
 
 <style>
 .error{
-  //border-color: crimson;
+  border-color: crimson;
   box-shadow: 0 0 0 1px crimson;
 }
 </style>

@@ -1,69 +1,104 @@
 <template>
+  <div class="container">
     <div class="itemlist center-container">
-      <div class="input-group">
-      <form @submit.prevent="addList">
-        <label class="info">ItemList</label>
-            <label class="input-label">
-              <span class="star">SL_No*:</span>
-              <input type="text" readonly required name="SlNo"
-                    v-model="itemsdata.SlNo" placeholder="Sl No (e.g:'1')"/>
-            </label>
-            <label class="input-label">
-                <span>Product_Description:</span>
-                <input type="text" name="PrdDesc"
-                      v-model="itemsdata.PrdDesc" placeholder="Product Description (e.g:'Rice')" />
-            </label>
-            <label class="input-label">
-                <span class="star">Is_Service*:</span>
-                <select name="ISServc" required v-model="itemsdata.IsServc">
+      <div class="form-group">
+        <form @submit.prevent="addList">
+          <label class="info">ItemList</label>
+          <div class="form-group">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-floating mb-3">
+                <input type="text" id="slNo" disabled required name="SlNo" class="form-control" v-model="itemsdata.SlNo" placeholder="Sl No (e.g:'1')"/>
+                <label for="slNo">SL_No
+                  <span class="star">*</span></label>
+                </div></div>
+              <div class="col-md-5">
+                <div class="form-floating mb-3">
+                  <input type="text" name="PrdDesc" class="form-control" v-model="itemsdata.PrdDesc" placeholder="Product Description (e.g:'Rice')" />
+                  <label for="productDescription" class="fw-bold">Product_Description</label>
+                </div></div>
+              <div class="col-md-2">
+                <div class="form-floating mb-3">
+                  <select name="ISServc" required class="form-select" v-model="itemsdata.IsServc">
                     <option value="Y" selected>Yes</option>
                     <option value="N">No</option>
-                </select>
-            </label>
-            <label class="input-label">
-                <span class="star">HSN_Code*:</span>
-                <input type="text" required name="HsnCd"
-                      v-model="itemsdata.HsnCd" placeholder="HSN Code (e.g:'1001')" />
-            </label>
+                  </select>
+                  <label for="isService" class="fw-bold">Is_Service
+                    <span class="star">*</span></label>
+                </div></div>
+              <div class="col-md-3">
+                <div class="form-floating mb-3">
+                  <input type="text" required name="HsnCd" class="form-control" v-model="itemsdata.HsnCd" placeholder="HSN Code (e.g:'1001')" />
+                  <label for="hsnCode" class="fw-bold">HSN_Code<span class="star">*</span></label>
+                </div>
+              </div>
+            </div>
+                          <!--    Item Brief Details Here  -->
             <label class="info">Batch Details</label>
-            <label class="input-label">
-                <span class="star">Batch_Name*:</span>
-                <input type="text" required name="Nm"
-                      v-model="itemsdata.BchDtls.Nm" placeholder="Batch Name (e.g:'123456')" />
-            </label>
-            <label class="input-label">
-                <span>Batch_ExpiryDate:</span>
-                <input type="date" name="ExpDt"
-                      v-model="itemsdata.BchDtls.Expdt" placeholder="Expiry Date (e.g:'01/08/2020')" />
-            </label>
-            <label class="input-label">
-                <span>Batch_WarrantyDate:</span>
-                <input type="date" name="wrDt"
-                      v-model="itemsdata.BchDtls.wrDt" placeholder="Warranty Date (e.g:'01/09/2020')" />
-            </label>
+            <div class="row">
+              <div class="col-md-4">
+                <div class="form-floating mb-3">
+                  <input type="text" required name="Nm" class="form-control" v-model="itemsdata.BchDtls.Nm" placeholder="Batch Name (e.g:'123456')" />
+                  <label for="batchName">Batch_Name<span class="star">*</span></label>
+                </div></div>
+              <div class="col-md-4">
+                <div class="form-floating mb-3">
+                  <input type="date" name="ExpDt" class="form-control" v-model="itemsdata.BchDtls.Expdt" placeholder="Expiry Date (e.g:'01/08/2020')" />
+                  <label for="batchExpiryDate">Batch_ExpiryDate</label>
+                </div></div>
+              <div class="col-md-4">
+                <div class="form-floating mb-3">
+                  <input type="date" name="wrDt" class="form-control" v-model="itemsdata.BchDtls.wrDt" placeholder="Warranty Date (e.g:'01/09/2020')" />
+                  <label for="batchWarrantyDate">Batch_WarrantyDate</label>
+                </div>
+              </div>
+            </div>
             <label for="" class="info">Brief Item</label>
-            <label class="input-label" v-for="(render, key) in itemsList" :key="render">
-                <span :class="render[2] ? 'star':''">{{key}}<span class="star" v-if="render[2]">*</span>:</span>
-                <input :type="render[1]" :required="render[2]"
-                       v-model="itemsdata[render[3]]"
-                       :name="render[3]" :placeholder="(key)=(render[0])"/>
-            </label>
+            <div class="container">
+              <table class="table table-responsive table-bordered">
+                <thead class="thead-dark">
+                <tr>
+                  <th v-for="render in itemsList" :key="render">{{ render[5] }}
+                    <span class="star" v-if="render[2]">*</span>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td v-for="(render, key) in itemsList" :key="render">
+                    <div class="form-floating mb-3">
+                      <input :type="render[1]" :required="render[2]" v-model="itemsdata[render[3]]" :name="render[3]" :id="render[5]" class="form-control" :placeholder="render[5]=key" />
+                      <label :for="render[5]">{{ render[5] }}
+                        <span class="star" v-if="render[2]">*</span>
+                      </label>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
             <label for="" class="info">Attribute details</label>
-            <label class="input-label">
-                <span>Attribute_Name:</span>
-                <input type="text" required name="AttrNm"
-                       v-model="itemsdata.AttribDtls[0].Nm" placeholder="Attribute Name(e.g:'Rice')" />
-            </label>
-            <label class="input-label">
-                <span>Attribute_Value:</span>
-                <input type="text" required name="AttrVal"
-                       v-model="itemsdata.AttribDtls[0].Val" placeholder="Attribute Value(e.g:'10000')" />
-            </label>
-        <button type="submit">Submit</button>
-      </form>
-        <button @click.self="senddata" v-if="buttonvalidator">Emit Data</button>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-floating mb-3">
+                  <input type="text" required name="AttrNm" class="form-control" v-model="itemsdata.AttribDtls[0].Nm" placeholder="Attribute Name(e.g:'Rice')" />
+                  <label for="attributeName">Attribute Name
+                  <span class="star">*</span>
+                  </label>
+                </div></div>
+              <div class="col-md-6">
+              <div class="form-floating mb-3">
+                <input type="text" required name="AttrVal" class="form-control" v-model="itemsdata.AttribDtls[0].Val" placeholder="Attribute Value(e.g:'10000')" />
+                <label for="attributeValue">Attribute Value
+                  <span class="star">*</span></label>
+              </div></div>
+          </div></div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <button @click.self="senddata" v-if="buttonvalidator" class="btn btn-secondary">Emit Data</button>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -75,9 +110,10 @@ export default {
   props: ['itemsSlNo'],
   setup(props, { emit }) {
     const itemsList = ref();
-    const buttonvalidator = ref(true);
+    const buttonvalidator = ref(false);
     const SlNo = ref(props.itemsSlNo);
     const itemsdata = createDefaultItem(props.itemsSlNo);
+    console.log(itemlist.ItemList.length);
     const loader = async () => {
       await props.itemsSlNo;
     };

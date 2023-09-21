@@ -1,5 +1,4 @@
 import {ref} from "vue";
-
 export const createDefaultItem=(sl)=> {
     return ref({
       SlNo: sl,
@@ -52,12 +51,15 @@ export const DateExchange=(val)=>{
 
 export const removeInvalids=(obj)=>{
   for (const key in obj){
-    if (obj[key]===null || obj[key] ===undefined || obj[key]==='' ||obj[key]==="" || obj[key]===0){
+    if (obj[key]===null || obj[key] ===undefined || obj[key]==='' ||obj[key]==="" || obj[key]===0 ){
      delete obj[key];
     }
     else if (typeof obj[key]==='object' && !Array.isArray(obj[key])){
       removeInvalids(obj[key]);
       if(Object.keys(obj[key]).length===0){
+        delete obj[key];
+      }
+      else if(obj[key][0]===null){
         delete obj[key];
       }
     }

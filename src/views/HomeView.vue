@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import {ref, computed, Suspense, onMounted} from 'vue';
+import {ref, computed, Suspense, onMounted, watchEffect} from 'vue';
 import Doc from "@/views/Forms/Doc.vue";
 import Dispatch_dtlsVue from './Forms/Dispatch_dtls.vue';
 import TransactionVue from "./Forms/Transaction.vue";
@@ -117,6 +117,14 @@ export default {
       Lister.value=await items;
       console.log(Lister.value);
     }
+    //Deleting ControlDtls and AddDocDtls
+    watchEffect(async ()=>{
+      await Itemlist.value;
+      if(await Itemlist.value.RefDtls.ContrDtls[0]===null){
+        delete await Itemlist.value.RefDtls.ContrDtls;
+      }
+    })
+
     // Simulate async data fetching on component mount
     onMounted(async () => {
       try {
@@ -131,7 +139,6 @@ export default {
         console.error('Error fetching data:', error);
       }
     });
-
     return {PreDocDtls,PreDocDtlsUpdater
       ,Insertion,Deletion,Lister,
       currentComponent, moveForward, moveBackward,
